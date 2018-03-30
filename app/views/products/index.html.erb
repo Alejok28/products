@@ -1,0 +1,32 @@
+<div class="container">
+  <h1>Productos</h1>
+  <%=link_to 'Nuevo producto',new_product_path,class:"btn btn-primary"%>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Categoría</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%@products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.price %></td>
+        <td>
+          <% product.categories.each do |category| %>
+            <%= category.name %>,
+          <% end %>
+        </td>
+        <td><%=  link_to "Editar",edit_product_path(product)%>
+          <%=  link_to "Eliminar",product, method: :delete, data: { confirm: "¿Estás seguro de eliminar este post?" }%>
+        </td>
+      </tr>
+      <%end %>
+
+
+    </tbody>
+  </table>
+</div>
